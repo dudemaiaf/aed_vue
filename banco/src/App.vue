@@ -1,29 +1,58 @@
 <template>
   <div id="app">
     <div id="top" class="top">
-      <img alt="Vue logo" src="./assets/logo.png">
+      <p>{{  heap  }}</p>
     </div>
 
     <div id="middle">
-      <input v-model="message" placeholder="Nome">
+      <input placeholder="Nome">
       <input v-model="priority" placeholder="Prioridade">
-      <button id="button">Button</button>
+      <v-btn
+        v-on:click=insert(priority,heap)
+        slot="activator"
+        class="v-btn--simple"
+        color="danger">Button Add
+      </v-btn>
     </div>
 
     <div id="bottom">
       <div id="guiche">
         <p>Guiche 1</p>
-        <img id="logo" alt="Vue logo" src="./assets/logo.png">
+        <br>
+        <h1>{{  max  }}</h1>
+        <v-btn
+          v-on:click=pop(max,heap)
+          slot="activator"
+          class="v-btn--simple"
+          color="danger">Button Pop
+          <h1>{{  max  }}</h1>
+        </v-btn>
       </div>
 
       <div id="guiche">
         <p>Guiche 2</p>
-        <img id="logo" alt="Vue logo" src="./assets/logo.png">
+        <h1>{{  max  }}</h1>
+        <br>
+        <v-btn
+          v-on:click=pop(max,heap)
+          slot="activator"
+          class="v-btn--simple"
+          color="danger">Button Pop
+          <h1>{{  max  }}</h1>
+        </v-btn>
       </div>
 
       <div id="guiche">
         <p>Guiche 3</p>
-        <img id="logo" alt="Vue logo" src="./assets/logo.png">
+        <h1>{{  max  }}</h1>
+        <br>
+        <v-btn
+          v-on:click=pop(max,heap)
+          slot="activator"
+          class="v-btn--simple"
+          color="danger">Button Pop
+          <h1>{{  max  }}</h1>
+        </v-btn>
       </div>
 
     </div>
@@ -33,8 +62,33 @@
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
+var Heap = require("collections/heap");
 /* eslint-disable */
+import heap from '../backend/server/controllers/heap.js'
 export default {
+  data: () => ({
+    heap: new Heap([]),
+    list: [],
+    priority: '',
+    message: '',
+    max: '',
+  }),
+  methods: {
+    insert(value, list){
+      list.push(value);
+    },
+    push(){},
+    pop(max, list){
+      max = list.max()
+      list.pop()
+      console.log(max)
+      return max
+    },
+    bubbleUp(){},
+    extractMax(){},
+    sinkDown(){},
+
+  },
   name: 'app',
   components: {
     HelloWorld
@@ -67,7 +121,7 @@ export default {
 }
 
 #p {
-  padding: 0px;
+  font-size: 100px
 }
 
 #button {
